@@ -34,3 +34,14 @@ jobs:
           password: ${{secrets.GHCR_TOKEN }}
 
       # Budowanie i publikacja gotowych obrazów na GitHub Container Registry - repozytorium zad1dod1, tag serwer, platformy amd64, armv7 i arm64, eksport cache
+      - name: Build and push
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          context: ./
+          platforms: linux/arm/v7,linux/arm64/v8,linux/amd64
+         file: ./Dockerfile
+          push: true
+          tags: ghcr.io/djkrnl/zad1:dod1
+          cache-from: type=registry,ref=ghcr.io/djkrnl/zad1:dod1
+          cache-to: type=inline
