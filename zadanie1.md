@@ -27,4 +27,4 @@ DODATEK 2, PUNKT 1
 2.
 - Pobranie obrazu ubuntu w najnowszej wersji: docker pull ubuntu:latest
 - Zmiana nazwy obrazu: docker tag ubuntu:latest localhost:6677/ubuntu-reg
-- Wgranie obrazu do utworzonego rejestru: docker push localhost:6677/ubuntu-reg
+- Wgranie obrazu do utworzonego rejestru: docker push localhost:6677/ubuntu-reg 
