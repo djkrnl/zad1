@@ -40,7 +40,7 @@ jobs:
         with:
           context: ./
           platforms: linux/arm/v7,linux/arm64/v8,linux/amd64
-         file: ./Dockerfile
+          file: ./Dockerfile
           push: true
           tags: ghcr.io/djkrnl/zad1:dod1
           cache-from: type=registry,ref=ghcr.io/djkrnl/zad1:dod1
