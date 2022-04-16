@@ -39,7 +39,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      # Budowanie i publikacja gotowych obrazów na Docker Hub / GitHub Container Registry - repozytorium zad1, tag dod1, platformy amd64, armv7 i arm64, eksport cache
+      # Budowanie i publikacja gotowych obrazów na Docker Hub lub GitHub Container Registry - repozytorium zad1, tag dod1, platformy amd64, armv7 i arm64, eksport cache
       - name: Build and push
         id: docker_build
         uses: docker/build-push-action@v2
