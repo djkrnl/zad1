@@ -43,7 +43,8 @@ jobs:
 
       # Punkt 2 - sprawdzanie poprawności działania obrazu
       - name: Test
-        run: timeout 1 docker run --rm djkrnl/zad1:test
+        timeout-minutes: 1
+        run: docker run --rm djkrnl/zad1:test
 
       # Budowanie i publikacja gotowych obrazów na Docker Hub - repozytorium zad1dod1, tag serwer, platformy amd64, armv7 i arm64, eksport cache
       - name: Build and push
