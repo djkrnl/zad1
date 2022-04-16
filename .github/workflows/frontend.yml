@@ -1,0 +1,60 @@
+name: Dodatek 1b
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build-push-images:
+    name: Budowanie obrazów i przesyłanie ich na Docker Hub
+    runs-on: ubuntu-latest
+
+    steps:
+
+      # Akcja sprawdzająca kod
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Akcja instalująca i konfigurująca QEMU
+      - name: Setup QEMU
+        id: qemu
+        uses: docker/setup-qemu-action@v1
+
+      # Akcja instalująca i konfigurująca Buildx
+      - name: Buildx set-up
+        id: buildx
+        uses: docker/setup-buildx-action@v1
+
+      # Logowanie na Docker Hub za pomocą nazwy użytkownika i tokenu dostępu znajdujących się w repozytorium jako tzw. sekrety
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+
+      # Punkt 2 - eksportowanie testowej wersji obrazu na Docker Hub
+      - name: Build and export to Docker
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./Dockerfile
+          load: true
+          tags: djkrnl/zad1dod1:test
+
+      # Punkt 2 - sprawdzanie poprawności działania obrazu
+      - name: Test
+        run: docker run --rm djkrnl/zad1dod1:test
+
+      # Budowanie i publikacja gotowych obrazów na Docker Hub - repozytorium zad1dod1, tag serwer, platformy amd64, armv7 i arm64, eksport cache
+      - name: Build and push
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          context: ./
+          platforms: linux/arm/v7,linux/arm64/v8,linux/amd64
+          file: ./Dockerfile
+          push: true
+          tags: djkrnl/zad1dod1:serwer
+          cache-from: type=registry,djkrnl/zad1dod1:serwer
+          cache-to: type=inline
+          
