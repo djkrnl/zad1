@@ -39,11 +39,11 @@ jobs:
           context: .
           file: ./Dockerfile
           load: true
-          tags: djkrnl/zad1dod1:test
+          tags: djkrnl/zad1:test
 
       # Punkt 2 - sprawdzanie poprawności działania obrazu
       - name: Test
-        run: docker run --rm djkrnl/zad1dod1:test
+        run: docker run --rm djkrnl/zad1:test
 
       # Budowanie i publikacja gotowych obrazów na Docker Hub - repozytorium zad1dod1, tag serwer, platformy amd64, armv7 i arm64, eksport cache
       - name: Build and push
@@ -54,7 +54,7 @@ jobs:
           platforms: linux/arm/v7,linux/arm64/v8,linux/amd64
           file: ./Dockerfile
           push: true
-          tags: djkrnl/zad1dod1:serwer
-          cache-from: type=registry,djkrnl/zad1dod1:serwer
+          tags: djkrnl/zad1:dod1
+          cache-from: type=registry,djkrnl/zad1:dod1
           cache-to: type=inline
           
