@@ -25,6 +25,26 @@ jobs:
         id: buildx
         uses: docker/setup-buildx-action@v1
 
+      # Logowanie na Docker Hub za pomocą nazwy użytkownika i tokenu dostępu znajdujących się w repozytorium jako tzw. sekrety
+      #- name: Login to DockerHub
+      #  uses: docker/login-action@v1 
+      #  with:
+      #    username: ${{ secrets.DOCKER_HUB_USERNAME }}
+      #    password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+
+      # Budowanie i publikacja gotowych obrazów na Docker Hub - repozytorium zad1dod1, tag serwer, platformy amd64, armv7 i arm64, eksport cache
+      #- name: Build and push
+      #  id: docker_build
+      #  uses: docker/build-push-action@v2
+      #  with:
+      #    context: ./
+      #    platforms: linux/arm/v7,linux/arm64/v8,linux/amd64
+      #    file: ./Dockerfile
+      #    push: true
+      #    tags: djkrnl/zad1:dod1
+      #    cache-from: type=registry,ref=djkrnl/zad1:dod1
+      #    cache-to: type=inline
+
       # Logowanie na GitHub Container Registry
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v1 
