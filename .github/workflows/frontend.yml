@@ -52,7 +52,8 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GHCR_TOKEN }}
-
+          
+      # Budowanie i publikacja gotowych obrazów na GitHub Container Registry - repozytorium zad1dod1, tag serwer, platformy amd64, armv7 i arm64, eksport cache
       - name: Build and push
         id: docker_build
         uses: docker/build-push-action@v2
