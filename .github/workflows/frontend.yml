@@ -42,6 +42,6 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: djkrnl/zad1:dod1
-          cache-from: type=registry,djkrnl/zad1:dod1
+          cache-from: type=registry,ref=djkrnl/zad1:dod1
           cache-to: type=inline
           
